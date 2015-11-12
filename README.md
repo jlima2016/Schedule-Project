@@ -4,6 +4,8 @@ CreateCourses.java - current main class
 
 
 
+
+
 Course.java - Course structure
 
 Period.java - Single meeting of a course structure
@@ -13,6 +15,8 @@ Schedule.java - Full schedule structure (holds fitness function)
 Student.java - Student structure
 
 Teacher.java - Teacher structure
+
+
 
 
 
