@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Course {
 
 	//maximum initial class size
-	private final int CLASS_SIZE = 12;
+	private final int CLASS_SIZE = 18;
 	
 	//constant
 	ArrayList<Student> possibleStudents;
@@ -53,11 +54,16 @@ public class Course {
 		
 		//each period has a default of CLASS_SIZE students
 		for (int p = 0; p < numClasses; p++) {
-			periods.add(new Period(name));
+		
+			int slot = (int)(Math.random()*7);
+			periods.add(new Period(name, time, flex, slot, possibleTeachers));
 			
 			//put a random teacher in each period
 			periods.get(p).setTeacher(possibleTeachers.get((int)(Math.random()*possibleTeachers.size())));
 		}
+		
+		//randomize the student list so they end up in random classes
+		Collections.shuffle(possibleStudents);
 		
 		for (int s = 0; s < possibleStudents.size(); s++) {
 			//the best line of code ever written
@@ -68,11 +74,6 @@ public class Course {
 		
 		return periods;
 	}
-	
-	//create periods based on a given list of periods
-	//public ArrayList<Period> initSeededPeriods(ArrayList<Period> p) {
-	
-	//}
 	
 	
 	public String toString() {
