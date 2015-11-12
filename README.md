@@ -1,8 +1,6 @@
 CreateCourses.java - current main class
 
-  how to run - java CreateCourses fakeCourses.csv fakeStudents.csv fakeTeachers.csv
-
-
+  - how to run - java CreateCourses fakeCourses.csv fakeStudents.csv fakeTeachers.csv
 
 
 
@@ -18,18 +16,16 @@ Teacher.java - Teacher structure
 
 
 
-
-
 fakeCourses.csv - course csv for testing
 
-  format - name,time,flex
+  - format - name,time,flex
   
 fakeStudents.csv - student csv for testing
 
-  format - name,course1,course2,etc
+  - format - name,course1,course2,etc
   
 fakeTeachers.csv - teacher csv for testing
 
-  format - name,course1,course2,etc
+  - format - name,course1,course2,etc
   
 courseCSV - actual pingry course csv
