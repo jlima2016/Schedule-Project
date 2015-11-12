@@ -104,11 +104,18 @@ public class CreateCourses {
 		
 		Schedule best = new Schedule(courses);
 		int bestFitness = best.calculateFitness();
-		System.out.println(bestFitness);
+		
+		System.out.println("gen: origin");
+		System.out.println("Current Best Fitness: " + best.calculateFitness());
 		
 		String csv = "";
 		
-		for (int i = 0; i < 10000; i++) {
+		//only change the fittest at the end of a generation
+		Schedule tempBest = best;
+		int tempBestFitness = bestFitness;
+		
+		/*
+		for (int s = 0; s < 10000; s++) {
 			
 			Schedule newSchedule = new Schedule(courses);
 			int fitness = newSchedule.calculateFitness();
@@ -116,15 +123,37 @@ public class CreateCourses {
 			if (fitness < bestFitness) {
 				best = newSchedule;
 				bestFitness = fitness;
-				
-				System.out.println(bestFitness);
-				csv += "" + i + "," + fitness + "," + 1;
+				System.out.println("Current Best Fitness: " + bestFitness);
 			}
-			else
-				csv += "" + i + "," + fitness + "," + 0;
-			
-			csv += "\n";
 		}
+		*/
+		
+		//go through each generation
+		for (int g = 0; g < 1000; g++) {
+			
+			for (int s = 0; s < 1000; s++) {
+			
+				Schedule newSchedule = new Schedule(courses, best);
+				int fitness = newSchedule.calculateFitness();
+				
+				if (fitness < bestFitness) {
+					tempBest = newSchedule;
+					tempBestFitness = fitness;
+				}
+			}
+			
+			//make a new seed if there is one worthy
+			if (tempBestFitness < bestFitness) {
+			
+				System.out.println("gen: " + g);
+				best = tempBest;
+				bestFitness = tempBestFitness;
+				System.out.println("Current Best Fitness: " + bestFitness);
+			}
+		}
+		
+		System.out.println(best);
+		System.out.println(best.simplePrint());
 		
 		
 		//create csv file for graphs
@@ -136,9 +165,9 @@ public class CreateCourses {
 		} catch (IOException ex) {
 		  // report
 		} finally {
-		   try {writer.close();} catch (Exception ex) {/*ignore*/}
+		   try {writer.close();} catch (Exception ex) { }
 		}
 		
-		System.out.println(best);
+		
 	}
 }
